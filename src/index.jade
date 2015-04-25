@@ -134,16 +134,22 @@ html
 
       section
         h2 Server Side
-        p.
-          npm, node.js
+        h4 Node.js, ruby, etc.
+
+        pre.language-obj-c
+          code.
+
+            npm install express-antenna-cocoalumberjack
+            export NODE_EXPRESS_ANTENNA_LOG_PATH=/tmp/
+            node node_modules/express-antenna-cocoalumberjack/app.js
+            tail -f /tmp/antenna-cocoalumberjack.log
+
+        br
+        br
+        br
 
       section
-        h2 HTTP
-        p.
-          same url, with http set to bold
-
-      section
-        h2 SSL Certificates
+        h2 HTTP://log.marius.me.uk/log/
         p.
           create certificate
 
