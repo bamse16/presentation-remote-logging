@@ -15,57 +15,116 @@ html
         h1 Remote Logging
 
       section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+        h2 Who am I?
+        div(style='width:40%; text-align:left;')
+          h3 Marius Ursache
+          span(class='fa fa-twitter') &nbsp; bamse
+          br
+          span(class='fa fa-github') &nbsp; bamse16
+          br
+          span(class='fa fa-briefcase') &nbsp; Simple Aspect
 
       section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
+        h2 Debugging
+        h3
+
+        pre.language-obj-c
+          code.
+            if(DEBUG)
+              NSLog(@"Application Started");
 
       section
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
+        h2 Macros
+
+        pre.language-obj-c
+          code.
+            #ifdef DEBUG
+            #   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), ...)
+            #else
+            #   define DLog(...)
+            #endif
+
+            // ALog always displays output regardless of the DEBUG setting
+            #define ALog(fmt, ...) NSLog((@"%s [Line %d] " fmt), ...)
 
       section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+        h2 Macros usage:
+
+        pre.language-obj-c
+          code.
+
+            DLog(@"Application Started");
 
       section
-        h2 Syntax Highlighting
-        h3 Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
-        pre
-          code.language-javascript.
-            bespoke.from('article', [
-              classes(),
-              keys(),
-              touch(),
-              bullets('li, .bullet')
-            ]);
+        h2 CocoaLumberjack
+        pre.language-obj-c
+          code.
 
-      section(data-bespoke-hash='named-route')
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+            pod 'CocoaLumberjack'
+            ...
 
-      section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
+            $ pod install
 
       section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+        h2 CocoaLumberjack usage:
+
+        pre.language-obj-c
+          code.
+
+            DDLogVerbose(@"Will Start Application");
+            // ...
+            DDLogDebug(@"Application Should Start");
+            // ...
+            DDLogInfo(@"Application Started");
+
+      section
+        h2 Antenna, DDAntennaLogger
+        p.
+          pod example + usage
+
+      section
+        h2 Server Side
+        p.
+          npm, node.js
+
+      section
+        h2 HTTP
+        p.
+          same url, with http set to bold
+
+      section
+        h2 SSL Certificates
+        p.
+          create certificate
+
+      section
+        h2 Error
+        p.
+          CFNetwork SSLHandshake failed (-9847)
+
+        h2 SSL Pinning
+        p.
+          Convert certificate
+
+      section
+        h2 Setup
+        p.
+          Code to setup pinning
+
+      section
+        h2 HTTP Auth
+        pre.language-obj-c
+          code.
+
+            NSURLCredential *credential =
+                [[NSURLCredential alloc] initWithUser:@"user"
+                                             password:@"password"
+                                          persistence:NSURLCredentialPersistenceSynchronizable];
+            [manager setCredential:credential];
+
+
+      section
+        h1 Thank you
+        a link to repo
 
     script(src='build/build.js')
