@@ -147,23 +147,60 @@ html
         br
 
       section
-        h2 HTTP://log.marius.me.uk/log/
-        p.
-          create certificate
+        h3 HTTP://log.marius.me.uk/log/
+        pre.language-obj-c
+          code.
+
+            openssl req -x509 -newkey rsa:2048 \
+                    -keyout log.marius.me.uk.key \
+                    -out log.marius.me.uk.cert \
+                    -days 3560 -nodes
 
       section
-        h2 Error
-        p.
-          CFNetwork SSLHandshake failed (-9847)
+        h3 Error
+        pre.language-obj-c
+          code.
+            CFNetwork SSLHandshake failed (-9847)
 
-        h2 SSL Pinning
+        h3 SSL Pinning
         p.
-          Convert certificate
+
+        pre.language-obj-c
+          code.
+
+            openssl x509 -in log.marius.me.uk.cert \
+                          -out log.marius.me.uk.der \
+                          -outform der
 
       section
-        h2 Setup
-        p.
-          Code to setup pinning
+        h2 Setting up AFHTTPRequestOperationManager
+
+        pre.language-obj-c
+          code.
+            AFHTTPRequestOperationManager *manager = ...
+            [manager setSecurityPolicy:[self
+                remoteLoggingSecurityPolicy]];
+
+            AntennaHTTPSChannel *httpsChannel = ...
+            [[Antenna sharedLogger] addChannel:httpsChannel];
+
+
+      section
+        h2 Setting the security policy
+        pre.language-obj-c
+          code.
+            - (AFSecurityPolicy*)remoteLoggingSecurityPolicy {
+                NSString *cerPath = ...
+                NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+
+                AFSecurityPolicy *securityPolicy = [AFSecurityPolicy
+                    policyWithPinningMode:AFSSLPinningModePublicKey];
+                [securityPolicy setAllowInvalidCertificates:YES];
+                [securityPolicy setPinnedCertificates:@[certData]];
+
+                return securityPolicy;
+            }
+
 
       section
         h2 HTTP Auth
