@@ -12,9 +12,9 @@ html
     article
 
       section
-        h1 Remote Logging
+        h1.bullet Remote Logging
 
-        div(style='width:80%; text-align:left;')
+        div.bullet(style='width:80%; text-align:left;')
           h2 Marius Ursache
           span(class='fa fa-twitter') &nbsp; bamse
           br
@@ -147,8 +147,8 @@ html
         br
 
       section
-        h3 HTTP://log.marius.me.uk/log/
-        pre.language-obj-c
+        h3.bullet HTTP://log.marius.me.uk/log/
+        pre.bullet.language-obj-c
           code.
 
             openssl req -x509 -newkey rsa:2048 \
@@ -158,14 +158,14 @@ html
 
       section
         h3 Error
-        pre.language-obj-c
+        pre.bullet.language-obj-c
           code.
             CFNetwork SSLHandshake failed (-9847)
 
-        h3 SSL Pinning
+        h3.bullet SSL Pinning
         p.
 
-        pre.language-obj-c
+        pre.bullet.language-obj-c
           code.
 
             openssl x509 -in log.marius.me.uk.cert \
